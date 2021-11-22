@@ -1,4 +1,6 @@
-# jumiAbout the project
+# Jumia
+
+# About the project
 This project was created using nodeJS and express. It basically allows you to send batches of orders to the api and the API will process the data and persist it.
 Once it is a simple project and didn't have much free time because of my work, I didn't create a chunk process to persist a really large amount of data so, this project can hold a small amount of data.
 
