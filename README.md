@@ -18,7 +18,7 @@ the endpoints:
 
 observation: you have to set up your request to use Multipart Form request and then, send the csv with the batches.
 
-"/orders/country/"<GET> Retrieves an array of counters which counts the amount of orders per country
+"/orders/country/"[GET] Retrieves an array of counters which counts the amount of orders per country
 
 "/orders/weight/"<GET> Retrieves an array of counters which counts the sum of parcel_weights per country
 
@@ -26,3 +26,28 @@ observation: you have to set up your request to use Multipart Form request and t
 example: /orders?page=1&per_page=5&country=Cameron
 
 ## There is a csv which you can use in the "csv" folder
+
+
+# Decision Making
+When I was building the project, I've faced some problems, for example, I had to test some regex into the phone number to find the country. for this particular case, I've decided to create an array of objects containing the countries and their regex.
+
+const countries = [
+    { title: 'Cameron', regex: /\(237\)\ ?[2368]\d{7,8}$/g },
+    { title: 'Ethiopia', regex: /\(251\)\ ?[1-59]\d{8}$/g },
+    { title: 'Morocco', regex: /\(212\)\ ?[5-9]\d{8}$/g },
+    { title: 'Mozambique', regex: /\(258\)\ ?[28]\d{7,8}$/g },
+    { title: 'Uganda', regex: /\(256\)\ ?\d{9}$/g },
+]
+
+Once I had this object, I could get the country using the filter method.
+
+function getCountry(numero: string) {
+    const country = countries.filter(el => el.regex.exec(numero))
+    return country.length ? country[0].title : ''
+}
+
+Another problem was "how to handle the csv file and process it"
+I've decided to create a temporary file containing the csv binary file and process it. after the processment is completed, I delete the file
+
+Talking about the database, I've decided to use prisma because it is easier to create the modoles and migrations and you don't neet to install any softwares to use an interface (prisma studio does that for you, you can use the interface into your web browser)
+The problem with prisma is the amount of data that it can handle. I've made some researches and I've noticed that a lot of people face this problem because prisma does not have a "create many" method.
