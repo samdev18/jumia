@@ -14,15 +14,15 @@ Now you are able to acess the API throught "localhost:3333"
 
 the endpoints: 
 
-"/orders/process"<POST> - calls the serviceA (processment) which will process data, get the country based on the phone number and then store the processed data into the database.
+"/orders/process"[POST] - Calls the serviceA (processment) which will process data, get the country based on the phone number and then store the processed data into the database.
 
 observation: you have to set up your request to use Multipart Form request and then, send the csv with the batches.
 
 "/orders/country/"[GET] Retrieves an array of counters which counts the amount of orders per country
 
-"/orders/weight/"<GET> Retrieves an array of counters which counts the sum of parcel_weights per country
+"/orders/weight/"[GET] Retrieves an array of counters which counts the sum of parcel_weights per country
 
-"/orders"<GET> Retrieves a list of orders based on filters that you can use through query params.
+"/orders"[GET] Retrieves a list of orders based on filters that you can use through query params.
 example: /orders?page=1&per_page=5&country=Cameron
 
 ## There is a csv which you can use in the "csv" folder
